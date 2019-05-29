@@ -1,5 +1,7 @@
 from itertools import product
 import pandas as pd
+import random
+import os
 #retorna o numero de linhas de um arquivo / recebe o nome do arquivo
 def numerodeLinhas(nome):
     return sum(1 for line in open(nome+".txt"))
@@ -127,7 +129,20 @@ def preencherAdversarios():
             adv.append([line.split()[0],line.split()[1]])
           i+=1
     return OrdenarAdversarios(adv, Adversarios)
+def gerarEntradas(num):
+  arquivo = open('entrada.txt', 'w')
+  N = num;
+  K = random.randint(1,N)
+  arquivo.write(str(N)+" "+str(K))
+  for x in range(N):
+    arquivo.write("\n")
+    arquivo.write(str(random.randint(0,N))+" "+str(random.randint(0,N*2)))
+    
+    
+
 #main
 if __name__ =="__main__":
+  justasTestes = (2, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 1000, 10000, 100000)
+  for i in justasTestes:
+    gerarEntradas(i)
     print(compararresultados(esforcoinicial(),Combinacoes()))
-    input()
