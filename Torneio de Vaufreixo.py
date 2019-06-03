@@ -1,7 +1,8 @@
 from itertools import product
 import pandas as pd
 import random
-import os
+import time
+
 #retorna o numero de linhas de um arquivo / recebe o nome do arquivo
 def numerodeLinhas(nome):
     return sum(1 for line in open(nome+".txt"))
@@ -142,7 +143,10 @@ def gerarEntradas(num):
 
 #main
 if __name__ =="__main__":
-  justasTestes = (2, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 1000, 10000, 100000)
+  justasTestes = (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)#(2, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 1000, 10000, 100000)
   for i in justasTestes:
+    inicio = time.time()
     gerarEntradas(i)
-    print(compararresultados(esforcoinicial(),Combinacoes()))
+    fim = time.time()
+    diferenca = fim-inicio
+    print("justa =",i,", resultado =", compararresultados(esforcoinicial(),Combinacoes()), " time =",(diferenca))
